@@ -64,155 +64,182 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: 
+          Container(
+            height: 32,
+            decoration: BoxDecoration(color: Colors.yellow),
+            child: Image.asset(
+              "images/rent_logo.png",
+              color: Colors.black87,
+              fit: BoxFit.scaleDown,
+            ),
+          ),
+        surfaceTintColor: Colors.white,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(color: Colors.yellow),
-                  margin: const EdgeInsets.only(top: 16, bottom: 48),
-                  height: 64.0,
-                  child: Image.asset(
-                    "images/rent_logo.png",
-                    color: Colors.black87,
-                
-                  ),
-                ),
-                const Text(
-                  "Create account",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w800
-                  ),
-                ),
-                const Text(
-                  "Make sure your password is 8 or more characters and has atleast 3 of the following :",
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 16
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-        
-                const SizedBox(height: 32,),
-                RequirementBulletPoint(text: "An uppercase letter",stringTested: _password ,onChanged: _hasUppercase),
-                RequirementBulletPoint(text: "A lowercase letter",stringTested: _password ,onChanged: _hasLowercase),
-                RequirementBulletPoint(text: "A number",stringTested: _password ,onChanged: _hasNumber),
-                RequirementBulletPoint(text: "A symbol",stringTested: _password ,onChanged: _hasSymbol),
-                const SizedBox(height: 32),
-                
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: "Username",
-                          contentPadding: EdgeInsets.only(bottom: 8, top: 32)
-                        ),
-                        inputFormatters: [
-                          FilteringTextInputFormatter.singleLineFormatter
-                        ],
-                        keyboardType: TextInputType.text,
-                        onChanged: (value) {
-                          setState(() {
-                            _username = value;
-                          });
-                        },
-                      )
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: PasswordTextField(
-                        hintText: "Password",
-                        onChanged: (value) {
-                          setState(() {
-                            _password = value;
-                          });
-                        },
-                      )
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: PasswordTextField(
-                        hintText: "Password Confirmation",
-                        onChanged: (value) {
-                          setState(() {
-                            _confPassword = value;
-                          });
-                        },
-                      )
-                    ),
-                  ],
-                ),
-        
-                SizedBox(height: 8,),
-        
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.yellow,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)
-                          )
-                        ),
-                        onPressed: (){},
-                        child: const Padding(
-                          padding: EdgeInsets.all(12.0),
-                          child: Text(
-                            "Continue",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          padding: EdgeInsets.only(top: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Flex(
+                direction: MediaQuery.of(context).orientation == Orientation.portrait ? Axis.vertical : Axis.horizontal,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    width: MediaQuery.of(context).orientation == Orientation.portrait ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.height,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Create account",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w800
                           ),
                         ),
-                      )
-                      )
-                  ],
-                ),
-        
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          style: TextStyle(color: Colors.black38, fontSize: 14),
-                          text: "By continuing you accept our "
+                        const Text(
+                          "Make sure your password is 8 or more characters and has atleast 3 of the following :",
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 16
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        TextSpan(
-                          style: TextStyle(color: Colors.black38, fontSize: 14, decoration: TextDecoration.underline),
-                          text: "Terms of services",
-                          recognizer: TapGestureRecognizer()..onTap = (){
-                  
-                          }
-                        ),
-                        TextSpan(
-                          style: TextStyle(color: Colors.black38, fontSize: 14),
-                          text: " and "
-                        ),
-                        TextSpan(
-                          style: TextStyle(color: Colors.black38, fontSize: 14, decoration: TextDecoration.underline),
-                          text: "Privacy policy",
-                          recognizer: TapGestureRecognizer()..onTap = (){
-                  
-                          }
-                        )
+
+                        const SizedBox(height: 32,),
+                        RequirementBulletPoint(text: "An uppercase letter",stringTested: _password ,onChanged: _hasUppercase),
+                        RequirementBulletPoint(text: "A lowercase letter",stringTested: _password ,onChanged: _hasLowercase),
+                        RequirementBulletPoint(text: "A number",stringTested: _password ,onChanged: _hasNumber),
+                        RequirementBulletPoint(text: "A symbol",stringTested: _password ,onChanged: _hasSymbol),
+                        const SizedBox(height: 32),
                       ]
-                    )
+                    ),
                   ),
+
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    width: MediaQuery.of(context).orientation == Orientation.portrait ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.height,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: "Username",
+                                  contentPadding: EdgeInsets.only(bottom: 8, top: 32)
+                                ),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.singleLineFormatter
+                                ],
+                                keyboardType: TextInputType.text,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _username = value;
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: PasswordTextField(
+                                hintText: "Password",
+                                onChanged: (value) {
+                                  setState(() {
+                                    _password = value;
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: PasswordTextField(
+                                hintText: "Password Confirmation",
+                                onChanged: (value) {
+                                  setState(() {
+                                    _confPassword = value;
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        
+                        SizedBox(height: 8,),
+                    
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.yellow,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)
+                                  )
+                                ),
+                                onPressed: (){},
+                                child: const Padding(
+                                  padding: EdgeInsets.all(12.0),
+                                  child: Text(
+                                    "Continue",
+                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                  ),
+                                ),
+                              )
+                              )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ]
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 32, 16, 16),
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        style: TextStyle(color: Colors.black38, fontSize: 14),
+                        text: "By continuing you accept our "
+                      ),
+                      TextSpan(
+                        style: TextStyle(color: Colors.black38, fontSize: 14, decoration: TextDecoration.underline),
+                        text: "Terms of services",
+                        recognizer: TapGestureRecognizer()..onTap = (){
+                
+                        }
+                      ),
+                      TextSpan(
+                        style: TextStyle(color: Colors.black38, fontSize: 14),
+                        text: " and "
+                      ),
+                      TextSpan(
+                        style: TextStyle(color: Colors.black38, fontSize: 14, decoration: TextDecoration.underline),
+                        text: "Privacy policy",
+                        recognizer: TapGestureRecognizer()..onTap = (){
+                
+                        }
+                      )
+                    ]
+                  )
                 ),
-                Row(
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
                   children: [
                     Expanded(
                       child: Divider(
@@ -238,8 +265,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ],
                 ),
-        
-                RichText(
+              ),
+              Padding(
+                padding : const EdgeInsets.fromLTRB(16, 0, 16, 24),
+                child: RichText(
+                  textAlign: TextAlign.center,
                   text: TextSpan(
                     children: [
                       TextSpan(
@@ -262,9 +292,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       )
                     ]
                   )
-                )
-              ]
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),
@@ -291,6 +321,7 @@ class _RequirementBulletPointState extends State<RequirementBulletPoint> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.max,
       children:[
         Text(
           "\u2022", 
@@ -300,14 +331,12 @@ class _RequirementBulletPointState extends State<RequirementBulletPoint> {
             ),
           ), //bullet text
         const SizedBox(width: 10, height: 0), //space between bullet and text
-        Expanded( 
-          child:Text(
-            widget.text, 
-            style: TextStyle(
-              fontSize: 16,
-              color: widget.onChanged(widget.stringTested) ? const Color.fromARGB(255, 35, 181, 110) : Colors.black87
-            ),), //text
-        )
+        Text(
+          widget.text, 
+          style: TextStyle(
+            fontSize: 16,
+            color: widget.onChanged(widget.stringTested) ? const Color.fromARGB(255, 35, 181, 110) : Colors.black87
+          ),)
       ]
     );
   }
