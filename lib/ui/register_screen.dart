@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jcb_renting/ui/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -62,204 +63,208 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                decoration: BoxDecoration(color: Colors.yellow),
-                margin: const EdgeInsets.only(top: 16, bottom: 48),
-                height: 64.0,
-                child: Image.asset(
-                  "images/rent_logo.png",
-                  color: Colors.black87,
-              
-                ),
-              ),
-              const Text(
-                "Create account",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w800
-                ),
-              ),
-              const Text(
-                "Make sure your password is 8 or more characters and has atleast 3 of the following :",
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 16
-                ),
-                textAlign: TextAlign.center,
-              ),
-      
-              const SizedBox(height: 32,),
-              RequirementBulletPoint(text: "An uppercase letter",stringTested: _password ,onChanged: _hasUppercase),
-              RequirementBulletPoint(text: "A lowercase letter",stringTested: _password ,onChanged: _hasLowercase),
-              RequirementBulletPoint(text: "A number",stringTested: _password ,onChanged: _hasNumber),
-              RequirementBulletPoint(text: "A symbol",stringTested: _password ,onChanged: _hasSymbol),
-              const SizedBox(height: 32),
-              
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: "Username",
-                        contentPadding: EdgeInsets.only(bottom: 8, top: 32)
-                      ),
-                      inputFormatters: [
-                        FilteringTextInputFormatter.singleLineFormatter
-                      ],
-                      keyboardType: TextInputType.text,
-                      onChanged: (value) {
-                        setState(() {
-                          _username = value;
-                        });
-                      },
-                    )
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(color: Colors.yellow),
+                  margin: const EdgeInsets.only(top: 16, bottom: 48),
+                  height: 64.0,
+                  child: Image.asset(
+                    "images/rent_logo.png",
+                    color: Colors.black87,
+                
                   ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: PasswordTextField(
-                      hintText: "Password",
-                      onChanged: (value) {
-                        setState(() {
-                          _password = value;
-                        });
-                      },
-                    )
+                ),
+                const Text(
+                  "Create account",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800
                   ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: PasswordTextField(
-                      hintText: "Password Confirmation",
-                      onChanged: (value) {
-                        setState(() {
-                          _confPassword = value;
-                        });
-                      },
-                    )
+                ),
+                const Text(
+                  "Make sure your password is 8 or more characters and has atleast 3 of the following :",
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 16
                   ),
-                ],
-              ),
-      
-              SizedBox(height: 8,),
-      
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.yellow,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)
+                  textAlign: TextAlign.center,
+                ),
+        
+                const SizedBox(height: 32,),
+                RequirementBulletPoint(text: "An uppercase letter",stringTested: _password ,onChanged: _hasUppercase),
+                RequirementBulletPoint(text: "A lowercase letter",stringTested: _password ,onChanged: _hasLowercase),
+                RequirementBulletPoint(text: "A number",stringTested: _password ,onChanged: _hasNumber),
+                RequirementBulletPoint(text: "A symbol",stringTested: _password ,onChanged: _hasSymbol),
+                const SizedBox(height: 32),
+                
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Username",
+                          contentPadding: EdgeInsets.only(bottom: 8, top: 32)
+                        ),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.singleLineFormatter
+                        ],
+                        keyboardType: TextInputType.text,
+                        onChanged: (value) {
+                          setState(() {
+                            _username = value;
+                          });
+                        },
+                      )
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: PasswordTextField(
+                        hintText: "Password",
+                        onChanged: (value) {
+                          setState(() {
+                            _password = value;
+                          });
+                        },
+                      )
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: PasswordTextField(
+                        hintText: "Password Confirmation",
+                        onChanged: (value) {
+                          setState(() {
+                            _confPassword = value;
+                          });
+                        },
+                      )
+                    ),
+                  ],
+                ),
+        
+                SizedBox(height: 8,),
+        
+                Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.yellow,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)
+                          )
+                        ),
+                        onPressed: (){},
+                        child: const Padding(
+                          padding: EdgeInsets.all(12.0),
+                          child: Text(
+                            "Continue",
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                        ),
+                      )
+                      )
+                  ],
+                ),
+        
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          style: TextStyle(color: Colors.black38, fontSize: 14),
+                          text: "By continuing you accept our "
+                        ),
+                        TextSpan(
+                          style: TextStyle(color: Colors.black38, fontSize: 14, decoration: TextDecoration.underline),
+                          text: "Terms of services",
+                          recognizer: TapGestureRecognizer()..onTap = (){
+                  
+                          }
+                        ),
+                        TextSpan(
+                          style: TextStyle(color: Colors.black38, fontSize: 14),
+                          text: " and "
+                        ),
+                        TextSpan(
+                          style: TextStyle(color: Colors.black38, fontSize: 14, decoration: TextDecoration.underline),
+                          text: "Privacy policy",
+                          recognizer: TapGestureRecognizer()..onTap = (){
+                  
+                          }
                         )
-                      ),
-                      onPressed: (){},
-                      child: const Padding(
-                        padding: EdgeInsets.all(12.0),
-                        child: Text(
-                          "Continue",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ]
+                    )
+                  ),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        height: 5,
+                        color: Colors.black54,
+                      )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: Text(
+                        "OR",
+                        style: TextStyle(
+                          fontSize: 16,
+                      
                         ),
                       ),
-                    )
-                    )
-                ],
-              ),
-      
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: RichText(
-                  textAlign: TextAlign.center,
+                    ),
+                    Expanded(
+                      child: Divider(
+                        height: 5,
+                        color: Colors.black54,
+                      )
+                    ),
+                  ],
+                ),
+        
+                RichText(
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        style: TextStyle(color: Colors.black38, fontSize: 14),
-                        text: "By continuing you accept our "
+                        text: "Already have an ",
+                        style: TextStyle(
+                          color: Colors.black38
+                        )
                       ),
                       TextSpan(
-                        style: TextStyle(color: Colors.black38, fontSize: 14, decoration: TextDecoration.underline),
-                        text: "Terms of services",
+                        text: "account?",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline
+                        ),
                         recognizer: TapGestureRecognizer()..onTap = (){
-                
-                        }
-                      ),
-                      TextSpan(
-                        style: TextStyle(color: Colors.black38, fontSize: 14),
-                        text: " and "
-                      ),
-                      TextSpan(
-                        style: TextStyle(color: Colors.black38, fontSize: 14, decoration: TextDecoration.underline),
-                        text: "Privacy policy",
-                        recognizer: TapGestureRecognizer()..onTap = (){
-                
+                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return const LoginScreen();
+                          }));
                         }
                       )
                     ]
                   )
-                ),
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Divider(
-                      height: 5,
-                      color: Colors.black54,
-                    )
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Text(
-                      "OR",
-                      style: TextStyle(
-                        fontSize: 16,
-                    
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      height: 5,
-                      color: Colors.black54,
-                    )
-                  ),
-                ],
-              ),
-      
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "Already have an ",
-                      style: TextStyle(
-                        color: Colors.black38
-                      )
-                    ),
-                    TextSpan(
-                      text: "account?",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        decoration: TextDecoration.underline
-                      ),
-                      recognizer: TapGestureRecognizer()..onTap = (){
-      
-                      }
-                    )
-                  ]
                 )
-              )
-            ]
+              ]
+            ),
           ),
         ),
       ),
